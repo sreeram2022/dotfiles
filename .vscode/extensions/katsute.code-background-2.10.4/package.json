@@ -1,0 +1,366 @@
+{
+	"name": "code-background",
+	"displayName": "Background",
+	"description": "The most advanced background image extension for VSCode",
+	"icon": "assets/icon-sm.png",
+	"galleryBanner": {
+		"color": "#0098FF",
+		"theme": "dark"
+	},
+	"publisher": "Katsute",
+	"version": "2.10.4",
+	"private": true,
+	"engines": {
+		"vscode": "^1.90.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"bg",
+		"bk",
+		"background",
+		"cover",
+		"theme",
+		"image",
+		"gif"
+	],
+	"activationEvents": [
+		"onStartupFinished"
+	],
+	"extensionKind": [
+		"ui"
+	],
+	"contributes": {
+		"commands": [
+			{
+				"command": "background.install",
+				"title": "Install",
+				"category": "Background"
+			},
+			{
+				"command": "background.uninstall",
+				"title": "Uninstall",
+				"category": "Background"
+			},
+			{
+				"command": "background.reload",
+				"title": "Reload",
+				"category": "Background"
+			},
+			{
+				"command": "background.config",
+				"title": "Configuration",
+				"category": "Background"
+			},
+			{
+				"command": "background.changelog",
+				"title": "Changelog",
+				"category": "Background"
+			},
+			{
+				"command": "background.help",
+				"title": "Help",
+				"category": "Background"
+			}
+		],
+		"configuration": {
+			"title": "Background",
+			"order": 0,
+			"properties": {
+				"background.windowBackgrounds": {
+					"markdownDescription": "The list of files, globs, or URLs to pull background images from.\n\n* Use only `/` for directories, `\\` is reserved for escape characters.\n\n* Image URLs must be served over HTTPS.",
+					"type": "array",
+					"order": 0,
+					"default": [],
+					"items": {
+						"type": "string"
+					}
+				},
+				"background.editorBackgrounds": {
+					"markdownDescription": "The list of files, globs, or URLs to pull background images from.\n\n* Use only `/` for directories, `\\` is reserved for escape characters.\n\n* Image URLs must be served over HTTPS.",
+					"type": "array",
+					"order": 1,
+					"default": [],
+					"items": {
+						"type": "string"
+					}
+				},
+				"background.sidebarBackgrounds": {
+					"markdownDescription": "The list of files, globs, or URLs to pull background images from.\n\n* Use only `/` for directories, `\\` is reserved for escape characters.\n\n* Image URLs must be served over HTTPS.",
+					"type": "array",
+					"order": 2,
+					"default": [],
+					"items": {
+						"type": "string"
+					}
+				},
+				"background.panelBackgrounds": {
+					"markdownDescription": "The list of files, globs, or URLs to pull background images from.\n\n* Use only `/` for directories, `\\` is reserved for escape characters.\n\n* Image URLs must be served over HTTPS.",
+					"type": "array",
+					"order": 3,
+					"default": [],
+					"items": {
+						"type": "string"
+					}
+				},
+				"background.backgroundAlignment": {
+					"markdownDescription": "The background image alignment.",
+					"type": "array",
+					"order": 4,
+					"default": [
+						"Center Center",
+						"Center Center",
+						"Center Center",
+						"Center Center"
+					],
+					"minItems": 4,
+					"maxItems": 4,
+					"items": {
+						"type": "string",
+						"enum": [
+							"Top Left",
+							"Top Center",
+							"Top Right",
+							"Center Left",
+							"Center Center",
+							"Center Right",
+							"Bottom Left",
+							"Bottom Center",
+							"Bottom Right",
+							"Manual"
+						]
+					}
+				},
+				"background.backgroundAlignmentValue": {
+					"markdownDescription": "If `#background.backgroundAlignment#` is set to `Manual`, this is the literal value for the `background-position` css property.",
+					"type": "array",
+					"order": 5,
+					"default": [
+						"50%",
+						"50%",
+						"50%",
+						"50%"
+					],
+					"minItems": 4,
+					"maxItems": 4,
+					"items": {
+						"type": "string",
+						"pattern": "^[\\w.% +-]*$"
+					}
+				},
+				"background.backgroundBlur": {
+					"markdownDescription": "The background image blur amount in css units.",
+					"type": "array",
+					"order": 6,
+					"default": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"minItems": 4,
+					"maxItems": 4,
+					"items": {
+						"type": "string",
+						"pattern": "^[\\w.% +-]*$"
+					}
+				},
+				"background.backgroundOpacity": {
+					"markdownDescription": "The UI opacity, make sure this number is not to low, otherwise you may not be able to see the UI and revert this change.\n\n`0` is fully visible and `1` is invisible.",
+					"type": "array",
+					"order": 7,
+					"default": [
+						0.9,
+						0.9,
+						0.9,
+						0.9
+					],
+					"minItems": 4,
+					"maxItems": 4,
+					"items": {
+						"type": "number",
+						"minimum": 0,
+						"maximum": 1
+					}
+				},
+				"background.backgroundRepeat": {
+					"markdownDescription": "The background image repeat.",
+					"type": "array",
+					"order": 8,
+					"default": [
+						"No Repeat",
+						"No Repeat",
+						"No Repeat",
+						"No Repeat"
+					],
+					"minItems": 4,
+					"maxItems": 4,
+					"items": {
+						"type": "string",
+						"enum": [
+							"No Repeat",
+							"Repeat",
+							"Repeat X",
+							"Repeat Y",
+							"Repeat Space",
+							"Repeat Round"
+						],
+						"enumDescriptions": [
+							"Do not repeat",
+							"Repeat X/Y",
+							"Repeat X",
+							"Repeat Y",
+							"Repeat with even spacing to fill the screen",
+							"Repeat and stretch images to fill the screen"
+						]
+					}
+				},
+				"background.backgroundSize": {
+					"markdownDescription": "The background image size.",
+					"type": "array",
+					"order": 9,
+					"default": [
+						"Cover",
+						"Cover",
+						"Cover",
+						"Cover"
+					],
+					"minItems": 4,
+					"maxItems": 4,
+					"items": {
+						"type": "string",
+						"enum": [
+							"Auto",
+							"Contain",
+							"Cover",
+							"Manual"
+						],
+						"enumDescriptions": [
+							"Original image size",
+							"Fit image to the screen",
+							"Stretch image to fill the screen",
+							"Manual size"
+						]
+					}
+				},
+				"background.backgroundSizeValue": {
+					"markdownDescription": "If `#background.windowBackgroundSize#` is set to `Manual`, this is the literal value for the `background-size` css property.",
+					"type": "array",
+					"order": 10,
+					"default": [
+						"100%",
+						"100%",
+						"100%",
+						"100%"
+					],
+					"minItems": 4,
+					"maxItems": 4,
+					"items": {
+						"type": "string",
+						"pattern": "^[\\w.% +-]*$"
+					}
+				},
+				"background.backgroundChangeTime": {
+					"markdownDescription": "How long in seconds before the background should automatically change.\n\nSet to `0` to always use the same image.",
+					"type": "array",
+					"order": 11,
+					"default": [
+						0,
+						0,
+						0,
+						0
+					],
+					"minItems": 4,
+					"maxItems": 4,
+					"items": {
+						"type": "number",
+						"minimum": 0
+					}
+				},
+				"background.autoInstall": {
+					"markdownDescription": "Automatically installs backgrounds and reloads the window on startup if changes are detected or VSCode updates.\n\nThis option is disabled when you run the uninstall command.",
+					"order": 12,
+					"type": "boolean",
+					"default": false
+				},
+				"background.useWindowOptionsForAllBackgrounds": {
+					"markdownDescription": "**Deprecated:** This setting is being removed to reduce confusion for new users, please set options separately.\n\n~~If enabled, all background images will use the options set for the windows background.~~\n\n~~This does not include the backgrounds, you still need to add background images separately.~~",
+					"order": 13,
+					"type": "boolean",
+					"default": false
+				},
+				"background.renderContentAboveBackground": {
+					"markdownDescription": "Render content like images, PDFs, and markdown previews above the background.",
+					"order": 14,
+					"type": "boolean",
+					"default": false
+				},
+				"background.smoothImageRendering": {
+					"markdownDescription": "Use smooth image rendering rather than pixelated rendering when resizing images.",
+					"order": 15,
+					"type": "boolean",
+					"default": false
+				},
+				"background.CSS": {
+					"markdownDescription": "Apply raw CSS to VSCode.",
+					"order": 16,
+					"type": "string",
+					"editPresentation": "multilineText",
+					"default": ""
+				}
+			}
+		}
+	},
+	"main": "dist/index.js",
+	"scripts": {
+		"// -- dev -- //": "",
+		"clean": "rimraf --glob dist & rimraf --glob code-background-*.vsix",
+		"prune": "npm prune && npm i --package-lock --ignore-scripts",
+		"update": "npm update -D && npm i --package-lock --ignore-scripts && npm run prune",
+		"// -- build -- //": "",
+		"vscode:prepublish": "npm run prepare",
+		"build:esbuild": "esbuild src/extension.ts --bundle --outfile=dist/index.js --external:vscode --format=cjs --platform=node --minify --legal-comments=none --metafile=meta.json",
+		"build:post": "node build.js",
+		"build": "npm run build:esbuild && npm run build:post",
+		"prepare": "npm run clean && npm run build",
+		"// -- deploy -- //": "",
+		"package": "vsce package"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/KatsuteDev/Background.git"
+	},
+	"author": "Katsute",
+	"license": "GPL-2.0-only",
+	"bugs": {
+		"url": "https://github.com/KatsuteDev/Background/issues"
+	},
+	"homepage": "https://github.com/KatsuteDev/Background#readme",
+	"devDependencies": {
+		"@types/node": "20.14.0",
+		"@types/tmp": "0.2.6",
+		"@types/vscode": "1.90.0",
+		"@vscode/sudo-prompt": "9.3.1",
+		"@vscode/test-electron": "2.4.0",
+		"@vscode/vsce": "2.27.0",
+		"esbuild": "0.21.4",
+		"glob": "10.4.1",
+		"rimraf": "5.0.7",
+		"tmp": "0.2.3",
+		"typescript": "5.4.5"
+	},
+	"__metadata": {
+		"id": "728b0910-614c-4963-a30b-cc6c0b51eb62",
+		"publisherId": "d418866a-7ee1-458e-a7d9-cff30cd8b2df",
+		"publisherDisplayName": "Katsute",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"isPreReleaseVersion": false,
+		"hasPreReleaseVersion": false,
+		"installedTimestamp": 1720055988066,
+		"pinned": false,
+		"preRelease": false,
+		"source": "gallery"
+	}
+}

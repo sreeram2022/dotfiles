@@ -1,0 +1,175 @@
+{
+	"name": "vscode-h2o",
+	"displayName": "Shell Script Command Completion",
+	"version": "0.2.15",
+	"description": "Add CLI autocomplete to shell script",
+	"repository": {
+		"url": "https://github.com/yamaton/vscode-h2o"
+	},
+	"publisher": "tetradresearch",
+	"author": {
+		"name": "Yamato Matsuoka",
+		"email": "yamato.matsuoka@tritonlab.io"
+	},
+	"license": "MIT",
+	"engines": {
+		"vscode": "^1.63.0"
+	},
+	"categories": [
+		"Snippets"
+	],
+	"icon": "images/animal_chara_computer_penguin.png",
+	"keywords": [
+		"shellscript",
+		"completion",
+		"autocomplete",
+		"intellisense",
+		"cli",
+		"bioinformatics",
+		"man",
+		"shell",
+		"bash",
+		"h2o"
+	],
+	"activationEvents": [
+		"onLanguage:shellscript",
+		"onLanguage:bitbake"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "h2o.clearCache",
+				"title": "Shell Completion: Remove Command Spec"
+			},
+			{
+				"command": "h2o.loadCommon",
+				"title": "Shell Completion: Load All Common CLI Specs"
+			},
+			{
+				"command": "h2o.loadBio",
+				"title": "Shell Completion: Load All Bioinformatics CLI Specs"
+			},
+			{
+				"command": "h2o.removeBio",
+				"title": "Shell Completion: Remove All Bioinformatics CLI Specs"
+			},
+			{
+				"command": "h2o.loadCommand",
+				"title": "Shell Completion: Load Command Spec (experimental)"
+			},
+			{
+				"command": "registeredCommands.refreshEntry",
+				"title": "Refresh",
+				"icon": "$(refresh)"
+			},
+			{
+				"command": "registeredCommands.removeEntry",
+				"title": "Remove",
+				"icon": "$(trash)"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "h2o.clearCache",
+					"when": "editorLangId == shellscript || editorLangId == bitbake"
+				},
+				{
+					"command": "h2o.loadCommon",
+					"when": "editorLangId == shellscript || editorLangId == bitbake"
+				},
+				{
+					"command": "h2o.loadBio",
+					"when": "editorLangId == shellscript || editorLangId == bitbake"
+				},
+				{
+					"command": "h2o.removeBio",
+					"when": "editorLangId == shellscript || editorLangId == bitbake"
+				},
+				{
+					"command": "h2o.loadCommand",
+					"when": "editorLangId == shellscript || editorLangId == bitbake"
+				}
+			],
+			"view/title": [
+				{
+					"command": "registeredCommands.refreshEntry",
+					"when": "view == registeredCommands",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "registeredCommands.removeEntry",
+					"when": "view == registeredCommands",
+					"group": "inline"
+				},
+				{
+					"command": "registeredCommands.removeEntry",
+					"when": "view == registeredCommands"
+				}
+			]
+		},
+		"configuration": {
+			"title": "Shell Completion",
+			"properties": {
+				"shellCompletion.h2oPath": {
+					"type": "string",
+					"default": "<bundled>",
+					"description": "Path to the H2O executable. Enter <bundled> if using the bundled."
+				}
+			}
+		},
+		"views": {
+			"explorer": [
+				{
+					"id": "registeredCommands",
+					"name": "Shell Commands",
+					"visibility": "collapsed"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.2.0",
+		"@types/mocha": "^10.0.0",
+		"@types/node": "^18.11.9",
+		"@types/node-fetch": "^2.5.12",
+		"@types/pako": "^1.0.2",
+		"@types/vscode": "^1.63.0",
+		"@typescript-eslint/eslint-plugin": "^5.7.0",
+		"@typescript-eslint/parser": "^5.7.0",
+		"@vscode/test-electron": "^2.1.5",
+		"eslint": "^8.4.1",
+		"glob": "^7.2.0",
+		"mocha": "^10.0.0",
+		"typescript": "^4.5.4"
+	},
+	"dependencies": {
+		"node-fetch": "^2.6.6",
+		"pako": "^2.0.4",
+		"web-tree-sitter": "^0.20.8"
+	},
+	"__metadata": {
+		"id": "1319eaac-22a7-4792-96d4-6d73b58ebea7",
+		"publisherId": "01074b09-fe14-4062-90b2-10402f7fa8e2",
+		"publisherDisplayName": "tetradresearch",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"isPreReleaseVersion": false,
+		"hasPreReleaseVersion": false,
+		"installedTimestamp": 1720377350369,
+		"pinned": false,
+		"preRelease": false,
+		"source": "gallery"
+	}
+}
