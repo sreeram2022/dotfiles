@@ -1,6 +1,6 @@
 # My Dev Environment Files 
 
-I created this repo to back up my config files and to easily replicate my workflow on a new desktop.
+I created this repo to backup my config files and to easily replicate my workflow on a new desktop.
 
 ## Terminal Setup
 
@@ -28,8 +28,8 @@ To set up your environment using these configuration files, follow the steps bel
 1. **Clone the Repository:**
 
     ```bash
-    git clone https://github.com/your-username/your-repo.git
-    cd your-repo
+    git clone https://github.com/sreeram2022/dotfiles.git
+    cd dotfiles
     ```
 
 2. **Install Dependencies:**
