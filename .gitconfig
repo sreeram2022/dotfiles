@@ -1,0 +1,6 @@
+[user]
+	name = Sreeram venkata
+	email = pvsreeram1@gmail.com
+[core]
+	editor = code --wait
+	autocrlf = input
