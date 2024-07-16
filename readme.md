@@ -1,6 +1,6 @@
 # My Dev Environment Files 
 
-I created this repo to backup my config files and to easily replicate my workflow on a new desktop.
+I created this repo to backup my config and dot files to easily replicate my workflow on a new desktop.
 
 ## Terminal Setup
 
