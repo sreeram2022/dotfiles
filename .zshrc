@@ -85,11 +85,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='nvim'
+ else
+   export EDITOR='vim'
+ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -104,6 +104,24 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias python=/usr/bin/python3
 
+# Basic Aliases
+alias ll='ls -la'               # List files with detailed info
+alias g='git'                   # Shorten 'git' command
+alias ..='cd ..'                # Move up one directory
+alias ...='cd ../..'            # Move up two directories
+
+# Useful Commands
+alias update='sudo apt update && sudo apt upgrade'  # Update system packages
+alias c='clear'                # Clear the terminal screen
+alias h='history'              # Show command history
+alias py='python3'             # Use python3 for 'py'
+
+# macOS Specific Commands
+alias def='defaults'               # Access macOS defaults system
+alias saytessa='say -V tessa'      # Use macOS TTS with the Tessa voice
+
+alias editzsh='nvim ~/.zshrc' #Editign .zshrc from anywhere
+alias vimrc='nvim ~/.vimrc' #Editign .vimrc from anywhere
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -122,4 +140,6 @@ unset __conda_setup
 # To customize prompt, run p10k configure or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 HISTSIZE=10000
+
+alias gacp='f() { git add . && git commit -m "$1" && git push origin main; }; f'
 
